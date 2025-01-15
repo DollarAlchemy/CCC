@@ -1,76 +1,70 @@
-/* General Styles */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    color: #333;
 }
 
-.container {
-  width: 90%;
-  max-width: 400px;
-  text-align: center;
-  background: #fff;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.5s ease-in-out;
+#game-container {
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 600px;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
 }
 
-/* Tier Styles */
 .tier {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
 }
 
-.tier.active {
-  opacity: 1;
-  transform: translateY(0);
+.color-btn {
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    border-radius: 50%;
+    border: 4px solid #ccc;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
 }
 
-.hidden {
-  display: none;
+.color-btn:hover {
+    transform: scale(1.1);
 }
 
-h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
+.color-btn.selected {
+    border-color: gold;
+    box-shadow: 0 0 15px gold;
 }
 
-/* Buttons */
-.buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
+.color-btn.greyscale {
+    filter: grayscale(100%);
+    cursor: not-allowed;
 }
 
-.btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.color-btn.revealed {
+    filter: grayscale(0%);
+    cursor: pointer;
 }
 
-.btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+#reset-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.play-again {
-  background: #28a745;
-  color: white;
-}
-
-.play-again:hover {
-  background: #218838;
+#reset-btn:hover {
+    background-color: #0056b3;
 }
