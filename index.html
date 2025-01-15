@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elemental Pathway Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <h1>Elemental Pathway</h1>
+        <div id="tier-1" class="tier">
+            <h2>Tier 1: Choose your Primary Element</h2>
+            <button onclick="selectTier1('Earth')">Earth</button>
+            <button onclick="selectTier1('Water')">Water</button>
+            <button onclick="selectTier1('Fire')">Fire</button>
+        </div>
+        <div id="tier-2" class="tier hidden">
+            <h2>Tier 2: Choose your Pathway</h2>
+            <div id="tier-2-options"></div>
+        </div>
+        <div id="tier-3" class="tier hidden">
+            <h2>Tier 3: Your Final Element</h2>
+            <p id="tier-3-result"></p>
+            <button onclick="resetGame()">Play Again</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
