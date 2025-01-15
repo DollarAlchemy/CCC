@@ -5,6 +5,7 @@ body {
     padding: 0;
     background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
     color: #333;
+    overflow-x: hidden;
 }
 
 #game-container {
@@ -14,10 +15,14 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     max-width: 500px;
     border-radius: 8px;
+    position: relative;
+    animation: fadeIn 1.2s ease-out;
 }
 
 .tier {
     margin: 20px 0;
+    position: relative;
+    animation: fadeInUp 0.8s ease-out;
 }
 
 button {
@@ -29,13 +34,39 @@ button {
     background-color: #007bff;
     color: white;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: transform 0.3s, background-color 0.3s;
 }
 
 button:hover {
     background-color: #0056b3;
+    transform: scale(1.1);
 }
 
 .hidden {
     display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+#game-outcome {
+    font-weight: bold;
+    font-size: 1.2em;
 }
