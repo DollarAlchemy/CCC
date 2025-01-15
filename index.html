@@ -3,38 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elemental Pathway</title>
+  <title>Color Picker Game</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="game-container">
-    <div class="game-card">
-      <!-- Tier 1 -->
-      <div class="tier tier-1 active">
-        <h1>Choose Your Element</h1>
-        <div class="options">
-          <button class="btn tier1" data-value="Earth" style="background: #6B8E23;">Earth</button>
-          <button class="btn tier1" data-value="Water" style="background: #4682B4;">Water</button>
-          <button class="btn tier1" data-value="Fire" style="background: #FF6347;">Fire</button>
-        </div>
-      </div>
-
-      <!-- Tier 2 -->
-      <div class="tier tier-2 hidden">
-        <h1>Choose Your Pathway</h1>
-        <div class="options"></div>
-      </div>
-
-      <!-- Tier 3 -->
-      <div class="tier tier-3 hidden">
-        <h1>Your Final Destiny</h1>
-        <div class="result">
-          <p id="final-result"></p>
-        </div>
-        <button id="play-again" class="btn play-again">Play Again</button>
+  <div class="container">
+    <!-- Tier 1 Selection -->
+    <div class="tier tier-1 active">
+      <h1>Select Your Team (Tier 1)</h1>
+      <div class="buttons">
+        <button class="btn" data-value="Red" style="background-color: #FF4136;">Red</button>
+        <button class="btn" data-value="Blue" style="background-color: #0074D9;">Blue</button>
+        <button class="btn" data-value="Brown" style="background-color: #8B4513;">Brown</button>
       </div>
     </div>
+
+    <!-- Tier 2 Selection -->
+    <div class="tier tier-2 hidden">
+      <h1>Choose Your Path (Tier 2)</h1>
+      <div class="buttons"></div>
+    </div>
+
+    <!-- Tier 3 Final Outcome -->
+    <div class="tier tier-3 hidden">
+      <h1>Your Final Color (Tier 3)</h1>
+      <div class="result">
+        <p id="final-result"></p>
+      </div>
+      <button id="play-again" class="btn play-again">Play Again</button>
+    </div>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
