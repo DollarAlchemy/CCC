@@ -9,19 +9,28 @@
 <body>
     <div id="game-container">
         <h1>Elemental Pathway</h1>
+        <p id="instructions">Start by selecting a Tier 1 element. Navigate through the tiers and see if you can outsmart the AI!</p>
+        
+        <!-- Tier 1 -->
         <div id="tier-1" class="tier">
             <h2>Tier 1: Choose your Primary Element</h2>
             <button onclick="selectTier1('Earth')">Earth</button>
             <button onclick="selectTier1('Water')">Water</button>
             <button onclick="selectTier1('Fire')">Fire</button>
         </div>
+
+        <!-- Tier 2 -->
         <div id="tier-2" class="tier hidden">
             <h2>Tier 2: Choose your Pathway</h2>
             <div id="tier-2-options"></div>
         </div>
+
+        <!-- Tier 3 -->
         <div id="tier-3" class="tier hidden">
             <h2>Tier 3: Your Final Element</h2>
             <p id="tier-3-result"></p>
+            <p id="ai-result"></p>
+            <p id="game-outcome"></p>
             <button onclick="resetGame()">Play Again</button>
         </div>
     </div>
