@@ -1,64 +1,56 @@
+// Tier 2 Connections
 const tier2Mapping = {
-  Earth: ["Metal", "Wood"],
-  Water: ["Steam", "Ice"],
-  Fire: ["Lava", "Steam"]
+  Red: ["Cyan", "Magenta"],
+  Blue: ["Cyan", "Yellow"],
+  Brown: ["Magenta", "Yellow"]
 };
 
+// Tier 3 Connections
 const tier3Mapping = {
-  Metal: "Wind",
-  Wood: "Lava",
-  Steam: "Ice",
-  Lava: "Wind",
-  Ice: "Wind"
+  Cyan: "Purple",
+  Magenta: "Orange",
+  Yellow: "Green"
 };
 
-const tier3Logic = {
-  Wind: "Lava",
-  Lava: "Ice",
-  Ice: "Wind"
-};
-
+// Selected Values
 let selectedTier1 = null;
 let selectedTier2 = null;
 
 // Handle Tier 1 Selection
-document.querySelectorAll(".tier1").forEach(btn => {
+document.querySelectorAll(".tier-1 .btn").forEach(btn => {
   btn.addEventListener("click", () => {
     selectedTier1 = btn.getAttribute("data-value");
-    transitionToTier(2, tier2Mapping[selectedTier1]);
+    showTier2Options(tier2Mapping[selectedTier1]);
   });
 });
 
-// Transition to Tier 2
-function transitionToTier(tier, options) {
-  document.querySelector(".tier.active").classList.remove("active");
-  const nextTier = document.querySelector(`.tier-${tier}`);
-  nextTier.classList.add("active");
+// Show Tier 2 Options
+function showTier2Options(options) {
+  const tier2Container = document.querySelector(".tier-2 .buttons");
+  tier2Container.innerHTML = "";
 
-  if (tier === 2) {
-    const choices = nextTier.querySelector(".options");
-    choices.innerHTML = "";
-
-    options.forEach(option => {
-      const button = document.createElement("button");
-      button.classList.add("btn");
-      button.textContent = option;
-      button.style.background = generateColor(option);
-      button.addEventListener("click", () => {
-        selectedTier2 = option;
-        showTier3Result(tier3Mapping[selectedTier2]);
-      });
-      choices.appendChild(button);
+  options.forEach(option => {
+    const button = document.createElement("button");
+    button.classList.add("btn");
+    button.textContent = option;
+    button.style.backgroundColor = getColor(option);
+    button.addEventListener("click", () => {
+      selectedTier2 = option;
+      showTier3Result(tier3Mapping[selectedTier2]);
     });
-  }
+    tier2Container.appendChild(button);
+  });
+
+  switchTier(1, 2);
 }
 
 // Show Tier 3 Result
-function showTier3Result(finalResult) {
+function showTier3Result(finalColor) {
   const resultElement = document.getElementById("final-result");
-  resultElement.textContent = `Your destiny is ${finalResult}!`;
+  resultElement.textContent = `Your final color is ${finalColor}!`;
+  resultElement.style.color = getColor(finalColor);
 
-  transitionToTier(3);
+  switchTier(2, 3);
 }
 
 // Play Again
@@ -66,19 +58,27 @@ document.getElementById("play-again").addEventListener("click", () => {
   selectedTier1 = null;
   selectedTier2 = null;
 
-  document.querySelector(".tier.active").classList.remove("active");
-  document.querySelector(".tier-1").classList.add("active");
+  switchTier(3, 1);
 });
 
-// Generate Dynamic Colors for Buttons
-function generateColor(option) {
+// Switch Between Tiers
+function switchTier(currentTier, nextTier) {
+  document.querySelector(`.tier-${currentTier}`).classList.remove("active");
+  document.querySelector(`.tier-${currentTier}`).classList.add("hidden");
+
+  document.querySelector(`.tier-${nextTier}`).classList.remove("hidden");
+  document.querySelector(`.tier-${nextTier}`).classList.add("active");
+}
+
+// Get Color for Buttons
+function getColor(option) {
   const colors = {
-    Metal: "#B0C4DE",
-    Wood: "#8FBC8F",
-    Steam: "#87CEFA",
-    Lava: "#FF4500",
-    Ice: "#ADD8E6",
-    Wind: "#D8BFD8"
+    Cyan: "#00CED1",
+    Magenta: "#FF00FF",
+    Yellow: "#FFD700",
+    Purple: "#800080",
+    Orange: "#FF4500",
+    Green: "#32CD32"
   };
   return colors[option] || "#ccc";
 }
