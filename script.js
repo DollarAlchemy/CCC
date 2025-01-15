@@ -1,68 +1,84 @@
-const tier2Connections = {
-    Red: ["Cyan", "Magenta"],
-    Blue: ["Cyan", "Yellow"],
-    Brown: ["Magenta", "Yellow"]
+const tier2Mapping = {
+  Earth: ["Metal", "Wood"],
+  Water: ["Steam", "Ice"],
+  Fire: ["Lava", "Steam"]
 };
 
-const tier3Connections = {
-    Cyan: "Purple",
-    Magenta: "Orange",
-    Yellow: "Green"
+const tier3Mapping = {
+  Metal: "Wind",
+  Wood: "Lava",
+  Steam: "Ice",
+  Lava: "Wind",
+  Ice: "Wind"
 };
 
-let currentPath = [];
+const tier3Logic = {
+  Wind: "Lava",
+  Lava: "Ice",
+  Ice: "Wind"
+};
 
-function selectTier1(color, svgId) {
-    currentPath.push(color);
-    updatePathDisplay();
+let selectedTier1 = null;
+let selectedTier2 = null;
 
-    // Highlight the selected button and SVG node
-    highlightSelection(color.toLowerCase() + "-btn", svgId);
+// Handle Tier 1 Selection
+document.querySelectorAll(".tier1").forEach(btn => {
+  btn.addEventListener("click", () => {
+    selectedTier1 = btn.getAttribute("data-value");
+    transitionToTier(2, tier2Mapping[selectedTier1]);
+  });
+});
 
-    // Reveal Tier 2 options
-    revealTier2Options(tier2Connections[color]);
-}
+// Transition to Tier 2
+function transitionToTier(tier, options) {
+  document.querySelector(".tier.active").classList.remove("active");
+  const nextTier = document.querySelector(`.tier-${tier}`);
+  nextTier.classList.add("active");
 
-function revealTier2Options(options) {
+  if (tier === 2) {
+    const choices = nextTier.querySelector(".options");
+    choices.innerHTML = "";
+
     options.forEach(option => {
-        const buttonId = `${option.toLowerCase()}-btn`;
-        const svgId = `rect-${option.toLowerCase()}`;
-        const button = document.getElementById(buttonId);
-        const svgNode = document.getElementById(svgId);
-
-        button.disabled = false;
-        button.classList.remove("greyscale");
-        button.classList.add("revealed");
-
-        svgNode.classList.remove("greyscale");
-        svgNode.classList.add("revealed");
+      const button = document.createElement("button");
+      button.classList.add("btn");
+      button.textContent = option;
+      button.style.background = generateColor(option);
+      button.addEventListener("click", () => {
+        selectedTier2 = option;
+        showTier3Result(tier3Mapping[selectedTier2]);
+      });
+      choices.appendChild(button);
     });
+  }
 }
 
-function highlightSelection(buttonId, svgId) {
-    // Highlight the button
-    document.getElementById(buttonId).classList.add("selected");
+// Show Tier 3 Result
+function showTier3Result(finalResult) {
+  const resultElement = document.getElementById("final-result");
+  resultElement.textContent = `Your destiny is ${finalResult}!`;
 
-    // Highlight the SVG node
-    const svgNode = document.getElementById(svgId);
-    svgNode.classList.add("selected");
+  transitionToTier(3);
 }
 
-function updatePathDisplay() {
-    document.getElementById("current-path").textContent = `Current Path: ${currentPath.join(" → ")}`;
-}
+// Play Again
+document.getElementById("play-again").addEventListener("click", () => {
+  selectedTier1 = null;
+  selectedTier2 = null;
 
-function resetGame() {
-    currentPath = [];
-    updatePathDisplay();
+  document.querySelector(".tier.active").classList.remove("active");
+  document.querySelector(".tier-1").classList.add("active");
+});
 
-    // Reset all buttons and SVG elements
-    document.querySelectorAll(".color-btn").forEach(button => {
-        button.className = "color-btn greyscale";
-        button.disabled = true;
-    });
-
-    document.querySelectorAll(".svg-node").forEach(node => {
-        node.className = "svg-node greyscale";
-    });
+// Generate Dynamic Colors for Buttons
+function generateColor(option) {
+  const colors = {
+    Metal: "#B0C4DE",
+    Wood: "#8FBC8F",
+    Steam: "#87CEFA",
+    Lava: "#FF4500",
+    Ice: "#ADD8E6",
+    Wind: "#D8BFD8"
+  };
+  return colors[option] || "#ccc";
 }
