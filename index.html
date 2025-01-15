@@ -1,57 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Path Game</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elemental Pathway</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="game-container">
-        <h1>Color Path Game</h1>
-
-        <div id="main-layout">
-            <!-- Tree Diagram -->
-            <div id="diagram-container">
-                <svg viewBox="0 0 500 400">
-                    <!-- Tier 1 -->
-                    <circle cx="150" cy="50" r="20" fill="blue" id="circle-blue" class="svg-node" />
-                    <circle cx="250" cy="50" r="20" fill="red" id="circle-red" class="svg-node" />
-                    <circle cx="350" cy="50" r="20" fill="brown" id="circle-brown" class="svg-node" />
-
-                    <!-- Tier 2 -->
-                    <rect x="120" y="150" width="50" height="50" fill="grey" id="rect-cyan" class="svg-node greyscale" />
-                    <rect x="220" y="150" width="50" height="50" fill="grey" id="rect-purple" class="svg-node greyscale" />
-                    <rect x="320" y="150" width="50" height="50" fill="grey" id="rect-magenta" class="svg-node greyscale" />
-
-                    <!-- Tier 3 -->
-                    <polygon points="250,300 220,330 280,330" fill="grey" id="polygon-green" class="svg-node greyscale" />
-                    <polygon points="140,300 110,330 170,330" fill="grey" id="polygon-orange" class="svg-node greyscale" />
-                    <polygon points="360,300 330,330 390,330" fill="grey" id="polygon-yellow" class="svg-node greyscale" />
-                </svg>
-            </div>
-
-            <!-- Choices & Instructions -->
-            <div id="controls-container">
-                <p id="instructions">Choose a Tier 1 color to start your path.</p>
-
-                <div id="choices">
-                    <!-- Buttons for Tier 1 -->
-                    <button class="color-btn" id="red-btn" onclick="selectTier1('Red', 'circle-red')">Red</button>
-                    <button class="color-btn" id="blue-btn" onclick="selectTier1('Blue', 'circle-blue')">Blue</button>
-                    <button class="color-btn" id="brown-btn" onclick="selectTier1('Brown', 'circle-brown')">Brown</button>
-                </div>
-
-                <div id="game-status">
-                    <p id="current-path">Current Path: </p>
-                    <p id="tier-result"></p>
-                </div>
-
-                <button id="reset-btn" onclick="resetGame()">Restart Game</button>
-            </div>
+  <div class="game-container">
+    <div class="game-card">
+      <!-- Tier 1 -->
+      <div class="tier tier-1 active">
+        <h1>Choose Your Element</h1>
+        <div class="options">
+          <button class="btn tier1" data-value="Earth" style="background: #6B8E23;">Earth</button>
+          <button class="btn tier1" data-value="Water" style="background: #4682B4;">Water</button>
+          <button class="btn tier1" data-value="Fire" style="background: #FF6347;">Fire</button>
         </div>
-    </div>
+      </div>
 
-    <script src="script.js"></script>
+      <!-- Tier 2 -->
+      <div class="tier tier-2 hidden">
+        <h1>Choose Your Pathway</h1>
+        <div class="options"></div>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="tier tier-3 hidden">
+        <h1>Your Final Destiny</h1>
+        <div class="result">
+          <p id="final-result"></p>
+        </div>
+        <button id="play-again" class="btn play-again">Play Again</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
