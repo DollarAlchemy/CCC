@@ -1,33 +1,28 @@
-/* General Styling */
+/* General Styles */
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #e9ecef, #dee2e6);
-  overflow: hidden;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
 }
 
-.game-container {
+.container {
   width: 90%;
   max-width: 400px;
-}
-
-.game-card {
-  background: #ffffff;
+  text-align: center;
+  background: #fff;
+  padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  text-align: center;
   transition: transform 0.5s ease-in-out;
 }
 
-/* Tier Content */
+/* Tier Styles */
 .tier {
-  padding: 20px;
   opacity: 0;
   transform: translateY(50px);
   transition: all 0.5s ease-in-out;
@@ -38,48 +33,37 @@ body {
   transform: translateY(0);
 }
 
-.options {
+.hidden {
+  display: none;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+.buttons {
   display: flex;
-  justify-content: space-around;
-  gap: 10px;
   flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
 }
 
 .btn {
-  padding: 12px 20px;
+  padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
+  color: white;
   border: none;
   border-radius: 10px;
-  color: white;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn:hover {
   transform: scale(1.1);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-.hidden {
-  display: none;
-}
-
-/* Final Result */
-.result {
-  margin: 20px 0;
-  font-size: 24px;
-  font-weight: bold;
-  animation: glow 1s infinite alternate;
-}
-
-@keyframes glow {
-  from {
-    text-shadow: 0 0 5px #ff5722, 0 0 10px #ff5722, 0 0 15px #ff5722;
-  }
-  to {
-    text-shadow: 0 0 10px #ff7043, 0 0 20px #ff7043, 0 0 30px #ff7043;
-  }
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .play-again {
