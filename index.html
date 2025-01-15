@@ -1,39 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Color Picker Game</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Path Game</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <!-- Tier 1 Selection -->
-    <div class="tier tier-1 active">
-      <h1>Select Your Team (Tier 1)</h1>
-      <div class="buttons">
-        <button class="btn" data-value="Red" style="background-color: #FF4136;">Red</button>
-        <button class="btn" data-value="Blue" style="background-color: #0074D9;">Blue</button>
-        <button class="btn" data-value="Brown" style="background-color: #8B4513;">Brown</button>
-      </div>
-    </div>
+    <div id="game-container">
+        <h1>Color Path Game</h1>
+        <p id="instructions">Choose a Tier 1 color to start your path.</p>
 
-    <!-- Tier 2 Selection -->
-    <div class="tier tier-2 hidden">
-      <h1>Choose Your Path (Tier 2)</h1>
-      <div class="buttons"></div>
-    </div>
+        <!-- Color Tree Display -->
+        <div id="tree-container">
+            <div class="tier tier-1">
+                <button class="color-btn" id="red-btn" onclick="selectTier1('Red')">Red</button>
+                <button class="color-btn" id="blue-btn" onclick="selectTier1('Blue')">Blue</button>
+                <button class="color-btn" id="brown-btn" onclick="selectTier1('Brown')">Brown</button>
+            </div>
+            <div class="tier tier-2">
+                <button class="color-btn greyscale" id="cyan-btn" onclick="selectTier2('Cyan')" disabled>Cyan</button>
+                <button class="color-btn greyscale" id="magenta-btn" onclick="selectTier2('Magenta')" disabled>Magenta</button>
+                <button class="color-btn greyscale" id="yellow-btn" onclick="selectTier2('Yellow')" disabled>Yellow</button>
+            </div>
+            <div class="tier tier-3">
+                <button class="color-btn greyscale" id="purple-btn" disabled>Purple</button>
+                <button class="color-btn greyscale" id="green-btn" disabled>Green</button>
+                <button class="color-btn greyscale" id="orange-btn" disabled>Orange</button>
+            </div>
+        </div>
 
-    <!-- Tier 3 Final Outcome -->
-    <div class="tier tier-3 hidden">
-      <h1>Your Final Color (Tier 3)</h1>
-      <div class="result">
-        <p id="final-result"></p>
-      </div>
-      <button id="play-again" class="btn play-again">Play Again</button>
-    </div>
-  </div>
+        <!-- Game Status -->
+        <div id="game-status">
+            <p id="current-path">Current Path: </p>
+            <p id="tier-result"></p>
+        </div>
 
-  <script src="script.js"></script>
+        <button id="reset-btn" onclick="resetGame()">Restart Game</button>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
